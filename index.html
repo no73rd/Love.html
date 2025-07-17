@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hola Chat</title>
+  <style>
+    body {
+      font-family: Tahoma, sans-serif;
+      background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+      margin: 0; padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    #messages {
+      max-height: 350px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+    }
+    .message {
+      background: #f0f0f0;
+      padding: 8px;
+      border-radius: 8px;
+      margin-bottom: 5px;
+      position: relative;
+    }
+    .message.self {
+      background: #c8e6c9;
+      text-align: right;
+    }
+    .timestamp {
+      font-size: 10px;
+      color: gray;
+      margin-top: 4px;
+      display: block;
+    }
+    .deleteBtn {
+      position: absolute;
+      top: 4px;
+      left: 8px;
+      background: red;
+      color: white;
+      border: none;
+      padding: 2px 6px;
+      font-size: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" id="loginDiv">
+  <h2>تسجيل الدخول</h2>
+  <input type="text" id="username" placeholder="اسم المستخدم" />
+  <input type="password" id="password" placeholder="كلمة المرور" />
+  <button id="loginBtn">دخول</button>
+  <p id="loginError" style="color:red;"></p>
+</div>
+
+<div class="container" id="chatDiv" style="display:none;">
+  <h2>الشات</h2>
+  <div id="messages"></div>
+  <textarea id="messageInput" placeholder="اكتب رسالة..."></textarea>
+  <button id="sendBtn">إرسال</button>
+  <button id="logoutBtn" style="background:#ef5350; color:white;">تسجيل خروج</button>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDMAU5bEP_e542i_Kt23kXj3ew8vm7RRnQ",
+    authDomain: "holachat-47571.firebaseapp.com",
+    projectId: "holachat-47571",
+    storageBucket: "holachat-47571.appspot.com",
+    messagingSenderId: "652570723206",
+    appId: "1:652570723206:web:90a067bccf0291f8bd2207"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const validUsers = {
+    "Omnia": "222006",
+    "MEDO": "2882006"
+  };
+
+  let currentUser = null;
+
+  const loginDiv = document.getElementById("loginDiv");
+  const chatDiv = document.getElementById("chatDiv");
+  const usernameInput = document.getElementById("username");
+  const passwordInput = document.getElementById("password");
+  const loginBtn = document.getElementById("loginBtn");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const loginError = document.getElementById("loginError");
+  const messagesDiv = document.getElementById("messages");
+  const messageInput = document.getElementById("messageInput");
+  const sendBtn = document.getElementById("sendBtn");
+
+  loginBtn.addEventListener("click", () => {
+    const username = usernameInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if(validUsers[username] && validUsers[username] === password){
+      currentUser = username;
+      loginDiv.style.display = "none";
+      chatDiv.style.display = "block";
+      loginError.textContent = "";
+      loadMessages();
+    } else {
+      loginError.textContent = "اسم المستخدم أو كلمة المرور غير صحيحة";
+    }
+  });
+
+  logoutBtn.addEventListener("click", () => {
+    currentUser = null;
+    loginDiv.style.display = "block";
+    chatDiv.style.display = "none";
+    messagesDiv.innerHTML = "";
+    usernameInput.value = "";
+    passwordInput.value = "";
+  });
+
+  sendBtn.addEventListener("click", async () => {
+    const text = messageInput.value.trim();
+    if(!text) return;
+
+    await addDoc(collection(db, "messages"), {
+      username: currentUser,
+      text,
+      timestamp: serverTimestamp()
+    });
+
+    messageInput.value = "";
+  });
+
+  async function deleteMessage(id) {
+    await deleteDoc(doc(db, "messages", id));
+  }
+
+  function loadMessages(){
+    const q = query(collection(db, "messages"), orderBy("timestamp"));
+    onSnapshot(q, snapshot => {
+      messagesDiv.innerHTML = "";
+      snapshot.forEach(docSnap => {
+        const msg = docSnap.data();
+        const div = document.createElement("div");
+        div.classList.add("message");
+        if(msg.username === currentUser) div.classList.add("self");
+        div.innerHTML = `
+          <strong>${msg.username}</strong>: ${msg.text}
+          <span class="timestamp">${msg.timestamp?.toDate()?.toLocaleString() || ""}</span>
+          ${msg.username === currentUser ? `<button class="deleteBtn" onclick="deleteMessage('${docSnap.id}')">X</button>` : ""}
+        `;
+        messagesDiv.appendChild(div);
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
