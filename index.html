@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من ميدو إلى بطتي 🥺❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: #ffe6e9;
+      color: #d6336c;
+      direction: rtl;
+      overflow-x: hidden;
+    }
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .page.active {
+      display: flex;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 22px;
+      line-height: 2;
+      max-width: 700px;
+      white-space: pre-line;
+    }
+    button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #ff6b81;
+      border: none;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #fa3c5a;
+    }
+    .heart {
+      width: 20px;
+      height: 20px;
+      background: red;
+      position: absolute;
+      transform: rotate(45deg);
+      animation: floatUp 5s linear infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% { bottom: -20px; opacity: 1; }
+      100% { bottom: 100vh; opacity: 0; }
+    }
+  </style>
+</head>
+<body>  <!-- الصفحات -->  <div class="page active" id="page1">
+    <h1>أول رسالة 🥺</h1>
+    <p>أنا مش عامل الموقع ده علشان أبهرك،
+ولا علشان أقولك كلام كبير.أنا عامله… علشان أقولك: أنا بحبك بجد ❤️
+
+بحبك من غير ما أدوّر على أسباب، ولا أستنى مقابل… بحبك لأنك إنتي.
+
+وكل صفحة هنا… هي كلمة من قلبي، ليكي 💌</p> <button onclick="nextPage()">التالي ➡️</button>
+
+  </div>  <div class="page" id="page2">
+    <h1>لو كنتي نسيتي…</h1>
+    <p>لو في يوم شكّيتي في مكانتك عندي،
+أرجوكي افتكري إني لما بضحك، بكون نفسي معاكي.
+ولما بسكت، ببقى بفكر فيكي.
+ولو بعدت… فده يمكن من الدنيا، مش مني.أنا مش نسيتك، ولا هقدر. ده انتي بقيتي في تفاصيل يومي، في طريقة كلامي، في كل خطة للمستقبل. انتي مش مجرد حب… انتي البيت اللي بترتاح فيه روحي 💗</p> <button onclick="nextPage()">التالي ➡️</button>
+
+  </div>  <div class="page" id="page3">
+    <h1>أنا وانتِ… لسه مكملين</h1>
+    <p>فاكرة أول مرّة ضحكتي؟
+فاكرة أول مرة قولتلك 'خليكي جنبي دايمًا'؟
+أنا لسه على وعدي… ولسه بحبك بنفس القوة، يمكن أكتر.يمكن اتغيرنا شوية… يمكن الظروف لعبت بينا، بس قلبي؟ هو هو… بيخاف عليكي، وبيتطمن بصوتك، وبيضعف لو زعلتي مني.
+
+انتي مش 'اختيار'… انتي قَدر… واختياري كل يوم 💍❤️ وأنا؟ أنا وعد، ومكمل لآخر نفس… جنبك، ليكي، وبكِ.</p> <button onclick="nextPage()">التالي ➡️</button>
+
+  </div>  <div class="page" id="page4">
+    <h1>ذكريات محفورة جوايا</h1>
+    <p>فاكرة لمّا كنا بنضحك على أي حاجة تفهى؟
+ولا لمّا كنتِ بتزعلي… وأفضل أتريق عليكي لحد ما تقولي 'متتكلمش معايا'؟ 😄فاكرة أول مرة قلتلك: 'إنتي حلوة حتى وانتي زعلانة؟' كنتِ بتكسفي… وتهربي من كلامي، بس عينيكي كانت بتقولي إنك فرحانة ❤️
+
+فاكرة لمّا كنتِ تقوليلي: 'مش مهم الدنيا، المهم إني معاك'؟ الكلمة دي بتعيش معايا، بتونسني، بتطمني… لأنك أكتر من مجرد حب، إنتي وطن، حضن، وكل الحكاية الحلوة اللي بحب أرجعلها دايمًا.</p> <button onclick="nextPage()">التالي ➡️</button>
+
+  </div>  <div class="page" id="page5">
+    <h1>أنا مش بنساكي</h1>
+    <p>يمكن أوقات ببقى صامت،
+يمكن شكلك بتحسي إني اتغيرت،
+بس الحقيقة؟
+أنا كل يوم بفتكرك أكتر… وبحبك أكتر ❤️أنا يمكن مش بعرف أعبّر كويس، بس كل تصرف صغير مني، فيه حب كبير ليكي.
+
+وإنك تحسي إنك مبقتيش مميزة؟ يبقى أنا غلطان… لأنك أغلى من كل حاجة، وكل لحظة بعدك بتحسّسني أنا اللي ناقص، مش إنتي.
+
+أنا آسف لو قصرت… وآسف أكتر لو خلتك تحسي إنك مجرد اختيار وإنتي… أكتر قرار قلبي فرح إنه أخده.</p> <button onclick="nextPage()">التالي ➡️</button>
+
+  </div>  <div class="page" id="page6">
+    <h1>وعد من قلبي</h1>
+    <p>أنا مش بوعدك بكلام…
+أنا بوعدك بعمري كله ❤️بوعدك إنك دايمًا هتكوني أول وأهم حد في حياتي، بوعدك إني هفضّل أختارك كل يوم، حتى في عز الزعل… وحتى لما الدنيا تبعدنا شوية.
+
+بوعدك إني أكون ضهرك وسندك، اللي هيمسح دمعتك، واللي هيضحكك لما تنسي تضحكي.
+
+بوعدك إنك مش مجرد مرحلة في حياتي… إنتي الحياة نفسها.
+
+ومهما حصل… هتفضلي "بطتي" اللي قلبي اختارها، واللي مش ناوي أسيبها… ولا حتى أوجعها تاني.</p> <button onclick="nextPage()">التالي ➡️</button>
+
+  </div>  <div class="page" id="page7" style="position: relative; overflow: hidden; background: linear-gradient(#ffccd5, #ffe6e9);">
+    <div class="container">
+      <h1>ليه بحبك؟ ❤️</h1>
+      <p class="message" id="typed"></p>
+      <button onclick="goToStart()">ابدأي من جديد؟ 🤍</button>
+    </div>
+  </div>  <script>
+    let currentPage = 1;
+    function nextPage() {
+      document.getElementById(`page${currentPage}`).classList.remove('active');
+      currentPage++;
+      const next = document.getElementById(`page${currentPage}`);
+      next.classList.add('active');
+      if(currentPage === 7) typeText();
+    }
+    function goToStart() {
+      document.getElementById(`page${currentPage}`).classList.remove('active');
+      currentPage = 1;
+      document.getElementById(`page1`).classList.add('active');
+      document.getElementById("typed").innerHTML = "";
+      i = 0;
+    }
+
+    const text = `بحبك…
+لإنك أول واحدة خلتني أحس إني عايز أبقى أحسن…
+بحبك علشان ضحكتك…
+بحبك علشان خناقاتنا اللي بتثبتلي إني مش عايز أخسرك…
+بحبك علشان كل مرة بتزعلي… برجع أقول: مش هعيش من غيرك…
+وبحبك…
+لإنك إنتي… ومفيش زيك.`;
+    let i = 0;
+    function typeText() {
+      if (i < text.length) {
+        document.getElementById("typed").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeText, 70);
+      }
+    }
+
+    // قلوب طايرة في الصفحة 7
+    function createHeart() {
+      if (document.getElementById('page7').classList.contains('active')) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.getElementById('page7').appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+      }
+    }
+    setInterval(createHeart, 300);
+  </script></body>
+</html>
